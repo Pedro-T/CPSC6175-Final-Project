@@ -3,6 +3,7 @@ package net.thingswithstuff.CountryInfoApp.service.CountryInfo;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import net.thingswithstuff.CountryInfoApp.model.CountryInfoResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -18,15 +19,17 @@ public class CountryInfoImpl implements CountryInfoService {
 
 
     private static final String queryURL = "https://restcountries.com/v3.1/alpha/";
-    private final HashMap<String, CountryInfoResponse> storedResponses;
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final HashMap<String, CountryInfoResponse> storedResponses = new HashMap<>();
+    private final RestTemplate template;
 
-    public CountryInfoImpl() {
-        this.storedResponses = new HashMap<>();
+    @Autowired
+    public CountryInfoImpl(RestTemplate template) {
+        this.template = template;
     }
 
+
     private String getResponseString(String cca2) {
-        return restTemplate.getForObject(String.format("%s%s", queryURL, cca2), String.class);
+        return template.getForObject(String.format("%s%s", queryURL, cca2), String.class);
     }
 
     private CountryInfoResponse parseResponse(String jsonResponse) {
