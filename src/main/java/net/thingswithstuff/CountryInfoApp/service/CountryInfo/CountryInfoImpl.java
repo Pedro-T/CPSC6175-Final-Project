@@ -1,5 +1,6 @@
 package net.thingswithstuff.CountryInfoApp.service.CountryInfo;
 
+import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import net.thingswithstuff.CountryInfoApp.model.CountryInfoResponse;
 import org.springframework.http.HttpStatus;
@@ -29,14 +30,15 @@ public class CountryInfoImpl implements CountryInfoService {
     }
 
     private CountryInfoResponse parseResponse(String jsonResponse) {
+        final Object document = Configuration.defaultConfiguration().jsonProvider().parse(jsonResponse);
         return CountryInfoResponse.builder()
-                .nameCommon(JsonPath.read(jsonResponse, "$.[0].name.common"))
-                .nameOfficial(JsonPath.read(jsonResponse, "$.[0].name.official"))
-                .cca2(JsonPath.read(jsonResponse, "$.[0].cca2"))
-                .capital(JsonPath.read(jsonResponse, "$.[0].capital.[0]"))
-                .population(JsonPath.read(jsonResponse, "$.[0].population"))
-                .region(JsonPath.read(jsonResponse, "$.[0].region"))
-                .subRegion(JsonPath.read(jsonResponse, "$.[0].subregion"))
+                .nameCommon(JsonPath.read(document , "$.[0].name.common"))
+                .nameOfficial(JsonPath.read(document , "$.[0].name.official"))
+                .cca2(JsonPath.read(document , "$.[0].cca2"))
+                .capital(JsonPath.read(document , "$.[0].capital.[0]"))
+                .population(JsonPath.read(document , "$.[0].population"))
+                .region(JsonPath.read(document , "$.[0].region"))
+                .subRegion(JsonPath.read(document , "$.[0].subregion"))
                 .build();
     }
 
