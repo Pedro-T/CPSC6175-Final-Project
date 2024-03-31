@@ -1,0 +1,28 @@
+[
+  {
+    "name": {
+      "common": "Bouvet Island",
+      "official": "Bouvet Island-official",
+      "nativeName": {
+        "nor": {
+          "official": "Bouvetøya",
+          "common": "Bouvetøya"
+        }
+      }
+    },
+    "cca2": "BV"
+  },
+  {
+    "name": {
+      "common": "French Southern and Antarctic Lands",
+      "official": "Territory of the French Southern and Antarctic Lands",
+      "nativeName": {
+        "fra": {
+          "official": "Territoire des Terres australes et antarctiques françaises",
+          "common": "Terres australes et antarctiques françaises"
+        }
+      }
+    },
+    "cca2": "TF"
+  }
+]

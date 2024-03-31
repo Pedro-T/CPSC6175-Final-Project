@@ -3,6 +3,7 @@ package net.thingswithstuff.CountryInfoApp.service.CountryListing;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import net.thingswithstuff.CountryInfoApp.model.CountryNamesResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -21,7 +22,12 @@ public class CountryListingImpl implements CountryListingService {
     private static final String regionQueryURL = "https://restcountries.com/v3.1/region/";
 
     private final HashMap<String, List<CountryNamesResponse>> storedRegionResponses = new HashMap<>();
-    private final RestTemplate template = new RestTemplate();
+    private final RestTemplate template;
+
+    @Autowired
+    public CountryListingImpl(RestTemplate template) {
+        this.template = template;
+    }
 
 
     private List<CountryNamesResponse> parseResponse(String jsonResponse) {
