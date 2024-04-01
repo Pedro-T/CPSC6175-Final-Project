@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CountryListingImpl implements CountryListingService {
@@ -22,7 +23,8 @@ public class CountryListingImpl implements CountryListingService {
     private static final String regionQueryURL = "https://restcountries.com/v3.1/region/";
     private static final String currencyQueryURL = "https://restcountries.com/v3.1/currency/";
 
-    private final HashMap<String, List<CountryNamesResponse>> storedRegionResponses = new HashMap<>();
+    private final Map<String, List<CountryNamesResponse>> storedRegionResponses = new HashMap<>();
+    private final Map<String, List<CountryNamesResponse>> storedCurrencyResponses = new HashMap<>();
     private final RestTemplate template;
 
     @Autowired
@@ -51,24 +53,28 @@ public class CountryListingImpl implements CountryListingService {
         throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "All Countries functionality not yet implemented");
     }
 
-    @Override
-    public List<CountryNamesResponse> getForRegion(String region) {
-        if (!storedRegionResponses.containsKey(region)) {
-            final String request = String.format("%s%s", regionQueryURL, region);
+    private List<CountryNamesResponse> getResponse(String key, String baseURL, Map<String, List<CountryNamesResponse>> cacheMap) {
+        if (!cacheMap.containsKey(key)) {
+            final String request = String.format("%s%s", baseURL, key);
             try {
                 final String jsonResponse = template.getForObject(request, String.class);
-                storedRegionResponses.put(region, parseResponse(jsonResponse));
+                storedRegionResponses.put(key, parseResponse(jsonResponse));
             } catch (HttpClientErrorException e) {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid region");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid request value / result not found");
             } catch (RestClientException e) {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error retrieving country list.");
             }
         }
-        return storedRegionResponses.get(region);
+        return cacheMap.get(key);
+    }
+
+    @Override
+    public List<CountryNamesResponse> getForRegion(String region) {
+        return getResponse(region, regionQueryURL, storedRegionResponses);
     }
 
     @Override
     public List<CountryNamesResponse> getForCurrency(String currency) {
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "List by Currency functionality not implemented yet.");
+        return getResponse(currency, currencyQueryURL, storedCurrencyResponses);
     }
 }
