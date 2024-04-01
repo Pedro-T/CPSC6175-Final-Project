@@ -20,6 +20,7 @@ public class CountryListingImpl implements CountryListingService {
 
     private static final String allQueryURL = "https://restcountries.com/v3.1/all?fields=name,cca2";
     private static final String regionQueryURL = "https://restcountries.com/v3.1/region/";
+    private static final String currencyQueryURL = "https://restcountries.com/v3.1/currency/";
 
     private final HashMap<String, List<CountryNamesResponse>> storedRegionResponses = new HashMap<>();
     private final RestTemplate template;
@@ -64,5 +65,10 @@ public class CountryListingImpl implements CountryListingService {
             }
         }
         return storedRegionResponses.get(region);
+    }
+
+    @Override
+    public List<CountryNamesResponse> getForCurrency(String currency) {
+        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "List by Currency functionality not implemented yet.");
     }
 }
