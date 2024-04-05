@@ -59,10 +59,10 @@ public class CountryListingImpl implements CountryListingService {
      */
     private List<CountryNamesResponse> getResponse(String key, String baseURL, Map<String, List<CountryNamesResponse>> cacheMap) {
         if (!cacheMap.containsKey(key)) {
-            final String request = String.format("%s%s", baseURL, key);
+            final String request = String.format("%s%s?fields=name,cca2", baseURL, key);
             try {
                 final String jsonResponse = template.getForObject(request, String.class);
-                storedRegionResponses.put(key, parseResponse(jsonResponse));
+                cacheMap.put(key, parseResponse(jsonResponse));
             } catch (HttpClientErrorException e) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid request value / result not found");
             } catch (RestClientException e) {
