@@ -1,0 +1,81 @@
+[
+  {
+    "name": {
+      "common": "United States",
+      "official": "United States of America",
+      "nativeName": {
+        "eng": {
+          "official": "United States of America",
+          "common": "United States"
+        }
+      }
+    },
+    "tld": [
+      ".us"
+    ],
+    "cca2": "US",
+    "ccn3": "840",
+    "cca3": "USA",
+    "cioc": "USA",
+    "independent": true,
+    "status": "officially-assigned",
+    "unMember": true,
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      },
+      "FOD": {
+        "name": "Fake Other Dollar",
+        "symbol": "&"
+      },
+      "FTD": {
+        "name": "Fake Third Dollar",
+        "symbol": "·"
+      }
+    },
+    "capital": [
+      "Washington, D.C."
+    ],
+    "altSpellings": [
+      "US",
+      "USA",
+      "United States of America"
+    ],
+    "region": "Americas",
+    "subregion": "North America",
+    "languages": {
+      "eng": "English",
+      "fr": "French"
+    },
+    "latlng": [
+      38.0,
+      -97.0
+    ],
+    "landlocked": false,
+    "borders": [
+      "CAN",
+      "MEX"
+    ],
+    "area": 9372610.0,
+    "demonyms": {
+      "eng": {
+        "f": "American",
+        "m": "American"
+      },
+      "fra": {
+        "f": "Américaine",
+        "m": "Américain"
+      }
+    },
+    "flag": "🇺🇸",
+    "maps": {
+      "googleMaps": "https://goo.gl/maps/e8M246zY4BSjkjAv6",
+      "openStreetMaps": "https://www.openstreetmap.org/relation/148838#map=2/20.6/-85.8"
+    },
+    "population": 329484123,
+    "gini": {
+      "2018": 41.4
+    }
+  }
+]

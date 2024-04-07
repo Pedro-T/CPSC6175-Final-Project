@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
 public class TestSingleCountryDetails {
@@ -45,6 +46,29 @@ public class TestSingleCountryDetails {
                 () -> assertEquals("English", appResponse.getLanguages().get(0)),
                 () -> assertEquals(1, appResponse.getCurrencies().size()),
                 () -> assertEquals("United States dollar", appResponse.getCurrencies().get(0))
+        );
+    }
+
+    @Test
+    void multipleLanguageCurrencyLists() throws IOException {
+        final String cca2 = "zz";
+        final String mockExternalResponse = new String(Files.readAllBytes(Paths.get("src/test/resources/fake-responses/multi-item-currency-language.json")));
+        when(template.getForObject(eq("https://restcountries.com/v3.1/alpha/zz"), eq(String.class))).thenReturn(mockExternalResponse);
+        final CountryInfoResponse appResponse = service.getSingleCountry(cca2);
+
+        final List<String> languages = appResponse.getLanguages();
+        assertAll(
+                () -> assertEquals(2, languages.size()),
+                () -> assertEquals("English", languages.get(0)),
+                () -> assertEquals("French", languages.get(1))
+        );
+
+        final List<String> currencies = appResponse.getCurrencies();
+        assertAll(
+                () -> assertEquals(3, currencies.size()),
+                () -> assertEquals("United States dollar", currencies.get(0)),
+                () -> assertEquals("Fake Other Dollar", currencies.get(1)),
+                () -> assertEquals("Fake Third Dollar", currencies.get(2))
         );
     }
 }
