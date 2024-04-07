@@ -40,7 +40,11 @@ public class TestSingleCountryDetails {
                 () -> assertEquals("Washington, D.C.", appResponse.getCapital()),
                 () -> assertEquals(329484123, appResponse.getPopulation()),
                 () -> assertEquals("Americas", appResponse.getRegion()),
-                () -> assertEquals("North America", appResponse.getSubRegion())
+                () -> assertEquals("North America", appResponse.getSubRegion()),
+                () -> assertEquals(1, appResponse.getLanguages().size()),
+                () -> assertEquals("English", appResponse.getLanguages().get(0)),
+                () -> assertEquals(1, appResponse.getCurrencies().size()),
+                () -> assertEquals("United States dollar", appResponse.getCurrencies().get(0))
         );
     }
 }
