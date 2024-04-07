@@ -39,5 +39,4 @@ class APIService {
     }
 }
 
-// Create an instance of the API service and export it
 export default new APIService();
