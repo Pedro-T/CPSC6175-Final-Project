@@ -45,7 +45,12 @@ public class TestSingleCountryDetails {
                 () -> assertEquals(1, appResponse.getLanguages().size()),
                 () -> assertEquals("English", appResponse.getLanguages().get(0)),
                 () -> assertEquals(1, appResponse.getCurrencies().size()),
-                () -> assertEquals("United States dollar", appResponse.getCurrencies().get(0))
+                () -> assertEquals("United States dollar", appResponse.getCurrencies().get(0)),
+                () -> assertEquals("https://flagcdn.com/w320/us.png", appResponse.getFlagUrl()),
+                () -> assertEquals("The flag of the United States of America is composed of thirteen equal " +
+                        "horizontal bands of red alternating with white. A blue rectangle, bearing fifty small " +
+                        "five-pointed white stars arranged in nine rows where rows of six stars alternate with rows " +
+                        "of five stars, is superimposed in the canton.", appResponse.getFlagAltText())
         );
     }
 

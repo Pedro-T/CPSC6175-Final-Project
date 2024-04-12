@@ -18,4 +18,6 @@ public class CountryInfoResponse {
     private String subRegion;
     private List<String> languages;
     private List<String> currencies;
+    private String flagUrl;
+    private String flagAltText;
 }
