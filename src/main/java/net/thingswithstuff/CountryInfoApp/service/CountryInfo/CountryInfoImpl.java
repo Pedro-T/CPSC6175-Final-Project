@@ -44,6 +44,8 @@ public class CountryInfoImpl implements CountryInfoService {
                 .subRegion(JsonPath.read(document , "$.[0].subregion"))
                 .languages(JsonPath.read(document, "$.[0].languages.*"))
                 .currencies(JsonPath.read(document, "$.[0].currencies.*.name"))
+                .flagUrl(JsonPath.read(document, "$.[0].flags.png"))
+                .flagAltText(JsonPath.read(document, "$.[0].flags.alt"))
                 .build();
     }
 

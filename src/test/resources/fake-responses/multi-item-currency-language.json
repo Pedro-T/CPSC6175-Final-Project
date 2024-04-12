@@ -76,6 +76,11 @@
     "population": 329484123,
     "gini": {
       "2018": 41.4
-    }
+    },
+    "flags": {
+    "png": "https://flagcdn.com/w320/us.png",
+    "svg": "https://flagcdn.com/us.svg",
+    "alt": "The flag of the United States of America is composed of thirteen equal horizontal bands of red alternating with white. A blue rectangle, bearing fifty small five-pointed white stars arranged in nine rows where rows of six stars alternate with rows of five stars, is superimposed in the canton."
+  }
   }
 ]
