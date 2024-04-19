@@ -1,42 +1,40 @@
-var path = require('path');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './main.jsx',
-    devtool: 'eval-source-map',
-    cache: true,
-    mode: 'development',
+    entry: './src/index.js',
     output: {
-        path: __dirname,
-        filename: '../resources/static/built/bundle.js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js',
     },
     module: {
         rules: [
             {
-                test: path.join(__dirname, '.'),
-                exclude: /(node_modules)/,
-                use: [{
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ["@babel/preset-env", "@babel/preset-react"]
+                        presets: ['@babel/preset-react', '@babel/preset-env']
                     }
-                }]
+                }
             },
             {
                 test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.(png|svg|jpg|gif|eot|otf|ttf|woff|woff2)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {}
-                    }
-                ]
+                use: ['style-loader', 'css-loader']
             }
         ]
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './public/index.html'
+        })
+    ],
+    devServer: {
+        static: './dist',
+        open: true
+    },
+    resolve: {
+        extensions: ['.js', '.jsx']
     }
 };

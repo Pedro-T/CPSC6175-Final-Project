@@ -1,0 +1,83 @@
+.regions-page header nav {
+    display: flex;
+    justify-content: center;
+    background: #f0f0f0;
+    padding: 10px 0;
+}
+
+.regions-page header nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.regions-page header nav a:hover {
+    text-decoration: underline;
+}
+
+.region-lists {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.continent {
+    flex-basis: calc(33% - 40px);
+    margin: 20px;
+    background: #f9f9f9;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.continent h2 {
+    margin-top: 0;
+}
+
+.continent ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.continent ul li button {
+    background: none;
+    border: none;
+    color: #007bff;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.continent ul li button:hover {
+    text-decoration: underline;
+}
+
+.country-data {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.country-data h3 {
+    margin-top: 0;
+}
+
+.country-data ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.country-data ul li {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .region-lists {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .continent {
+        flex-basis: 80%;
+        margin-bottom: 20px;
+    }
+}

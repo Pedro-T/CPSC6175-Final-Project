@@ -1,0 +1,43 @@
+.countries-page {
+    padding: 20px;
+}
+
+.regions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.region {
+    background: #f7f7f7;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.region h2 {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.region ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.region ul li {
+    margin: 5px 0;
+}
+
+.region ul li a {
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.region ul li a:hover {
+    color: #004499;
+    text-decoration: underline;
+}
