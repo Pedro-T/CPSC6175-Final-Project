@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomePageController {
 
 
-    @GetMapping("/")
+    @GetMapping(value = {"/", "/countries", "/regions", "/demographics"})
     public String index() {
         return "index";
     }
