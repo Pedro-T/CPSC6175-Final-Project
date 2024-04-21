@@ -31,7 +31,7 @@ public class TestSingleCountryDetails {
     void testSingleCountryValidResponse() throws IOException {
         final String cca2 = "us";
         final String mockExternalResponse = new String(Files.readAllBytes(Paths.get("src/test/resources/fake-responses/single-country-us-full.json")));
-        when(template.getForObject(eq("https://restcountries.com/v3.1/alpha/us"), eq(String.class))).thenReturn(mockExternalResponse);
+        when(template.getForObject(eq("https://restcountries.com/v3.1/alpha/us?fields=name,cca2,capital,population,region,subregion,languages,currencies,flags"), eq(String.class))).thenReturn(mockExternalResponse);
         CountryInfoResponse appResponse = service.getSingleCountry(cca2);
 
         assertAll(
@@ -58,7 +58,7 @@ public class TestSingleCountryDetails {
     void multipleLanguageCurrencyLists() throws IOException {
         final String cca2 = "zz";
         final String mockExternalResponse = new String(Files.readAllBytes(Paths.get("src/test/resources/fake-responses/multi-item-currency-language.json")));
-        when(template.getForObject(eq("https://restcountries.com/v3.1/alpha/zz"), eq(String.class))).thenReturn(mockExternalResponse);
+        when(template.getForObject(eq("https://restcountries.com/v3.1/alpha/zz?fields=name,cca2,capital,population,region,subregion,languages,currencies,flags"), eq(String.class))).thenReturn(mockExternalResponse);
         final CountryInfoResponse appResponse = service.getSingleCountry(cca2);
 
         final List<String> languages = appResponse.getLanguages();

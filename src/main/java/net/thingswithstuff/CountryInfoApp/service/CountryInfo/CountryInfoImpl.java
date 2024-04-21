@@ -19,6 +19,7 @@ public class CountryInfoImpl implements CountryInfoService {
 
 
     private static final String queryURL = "https://restcountries.com/v3.1/alpha/";
+    private static final String queryFields = "?fields=name,cca2,capital,population,region,subregion,languages,currencies,flags";
     private final HashMap<String, CountryInfoResponse> storedResponses = new HashMap<>();
     private final RestTemplate template;
 
@@ -29,23 +30,23 @@ public class CountryInfoImpl implements CountryInfoService {
 
 
     private String getResponseString(String cca2) {
-        return template.getForObject(String.format("%s%s", queryURL, cca2), String.class);
+        return template.getForObject(String.format("%s%s%s", queryURL, cca2, queryFields), String.class);
     }
 
     private CountryInfoResponse parseResponse(String jsonResponse) {
         final Object document = Configuration.defaultConfiguration().jsonProvider().parse(jsonResponse);
         return CountryInfoResponse.builder()
-                .nameCommon(JsonPath.read(document , "$.[0].name.common"))
-                .nameOfficial(JsonPath.read(document , "$.[0].name.official"))
-                .cca2(JsonPath.read(document , "$.[0].cca2"))
-                .capital(JsonPath.read(document , "$.[0].capital.[0]"))
-                .population(JsonPath.read(document , "$.[0].population"))
-                .region(JsonPath.read(document , "$.[0].region"))
-                .subRegion(JsonPath.read(document , "$.[0].subregion"))
-                .languages(JsonPath.read(document, "$.[0].languages.*"))
-                .currencies(JsonPath.read(document, "$.[0].currencies.*.name"))
-                .flagUrl(JsonPath.read(document, "$.[0].flags.png"))
-                .flagAltText(JsonPath.read(document, "$.[0].flags.alt"))
+                .nameCommon(JsonPath.read(document , "$.name.common"))
+                .nameOfficial(JsonPath.read(document , "$.name.official"))
+                .cca2(JsonPath.read(document , "$.cca2"))
+                .capital(JsonPath.read(document , "$.capital.[0]"))
+                .population(JsonPath.read(document , "$.population"))
+                .region(JsonPath.read(document , "$.region"))
+                .subRegion(JsonPath.read(document , "$.subregion"))
+                .languages(JsonPath.read(document, "$.languages.*"))
+                .currencies(JsonPath.read(document, "$.currencies.*.name"))
+                .flagUrl(JsonPath.read(document, "$.flags.png"))
+                .flagAltText(JsonPath.read(document, "$.flags.alt"))
                 .build();
     }
 
