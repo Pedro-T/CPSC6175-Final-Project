@@ -1,0 +1,71 @@
+/* General body styling */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Main container */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Header styles */
+.header {
+    font-size: 24px;
+    color: #0d6efd;
+}
+
+/* Navigation styles */
+.nav-links {
+    margin-top: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+    margin-right: 10px;
+}
+
+/* Button styling */
+.button {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0b5ed7;
+}
+
+/* Link styling */
+.link {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Footer styling */
+.footer {
+    margin-top: auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    width: 100%;
+    text-align: center;
+}

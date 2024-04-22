@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
 import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
+import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import './HomePage.css';
 
 const HomePage = () => {
@@ -11,28 +12,23 @@ const HomePage = () => {
     useEffect(() => {
         let root = am5.Root.new("chartdiv");
 
-        // Set themes
         root.setThemes([
             am5themes_Animated.new(root)
         ]);
 
-        // Create the map chart
         let chart = root.container.children.push(am5map.MapChart.new(root, {
             panX: "rotateX",
             panY: "rotateY",
             projection: am5map.geoMercator()
         }));
 
-        // Create polygon series for countries
         let polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
             geoJSON: am5geodata_worldLow
         }));
 
-        // Create hover state and set alternative fill color
         let polygonHoverState = polygonSeries.mapPolygons.template.states.create("hover");
         polygonHoverState.set("fill", root.interfaceColors.get("primaryButtonHover"));
 
-        // Assign the chart to the chartRef
         chartRef.current = chart;
 
         return () => {

@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import APIService from "../services/APIService";
+import useRegionsStore from '../store/useRegionsStore';
 import './RegionsPage.css';
 
 const RegionsPage = () => {
-    const [selectedRegion, setSelectedRegion] = useState('');
-    const [countries, setCountries] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    const { selectAndFetchCountriesByRegion, selectedRegion, countries, loading, error } = useRegionsStore();
 
-    const regions = [
+    const uiRegions = [
         { name: 'Africa', subregions: ['North Africa', 'Sub-Saharan Africa', 'East Africa', 'West Africa', 'Central Africa', 'Southern Africa'] },
         { name: 'Asia', subregions: ['Central Asia', 'East Asia', 'South Asia', 'Southeast Asia', 'West Asia (Middle East)'] },
         { name: 'Europe', subregions: ['Northern Europe', 'Western Europe', 'Central Europe', 'Southern Europe', 'Eastern Europe'] },
@@ -18,20 +15,8 @@ const RegionsPage = () => {
         { name: 'South America', subregions: ['South America'] }
     ];
 
-    const fetchCountriesByRegion = (region) => {
-        setLoading(true);
-        setError('');
-        setSelectedRegion(region);
-        APIService.getCountriesByRegion(region)
-            .then(response => {
-                setCountries(response.data);
-                setLoading(false);
-            })
-            .catch(err => {
-                setError(`Error fetching countries for ${region}.`);
-                setLoading(false);
-                setCountries([]);
-            });
+    const handleRegionClick = (region) => {
+        selectAndFetchCountriesByRegion(region);
     };
 
     return (
@@ -47,13 +32,13 @@ const RegionsPage = () => {
             <h1>Regions</h1>
 
             <div className="region-lists">
-                {regions.map(continent => (
+                {uiRegions.map(continent => (
                     <div key={continent.name} className="continent">
                         <h2>{continent.name}</h2>
                         <ul>
                             {continent.subregions.map(region => (
                                 <li key={region}>
-                                    <button onClick={() => fetchCountriesByRegion(region)}>
+                                    <button onClick={() => handleRegionClick(region)}>
                                         {region}
                                     </button>
                                 </li>

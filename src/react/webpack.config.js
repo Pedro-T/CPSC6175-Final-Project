@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.js',  // Path to your main JavaScript file
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
@@ -15,13 +15,10 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-react', '@babel/preset-env']
+                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        plugins: ['@babel/plugin-transform-runtime']
                     }
                 }
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
             }
         ]
     },
@@ -31,10 +28,9 @@ module.exports = {
         })
     ],
     devServer: {
-        static: './dist',
+        contentBase: path.join(__dirname, 'dist'),
+        compress: true,
+        port: 3000,
         open: true
-    },
-    resolve: {
-        extensions: ['.js', '.jsx']
     }
 };
