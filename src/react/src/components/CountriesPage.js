@@ -21,7 +21,7 @@ const CountriesPage = () => {
                         <h2>{regionData.region}</h2>
                         <ul>
                             {regionData.countries.map(country => (
-                                <li key={country.name}> // Assuming country has a name property
+                                <li key={country.name}>
                                     <a
                                         href={`/country/${encodeURIComponent(country.name)}`}
                                         target="_blank"
