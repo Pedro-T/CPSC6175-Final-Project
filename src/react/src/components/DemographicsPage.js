@@ -1,5 +1,5 @@
 import React from 'react';
-import useDemographicsStore from '../store/useDemographicsStore';
+import useDemographicsStore from '../../../store/useDemographicsStore';
 import './DemographicsPage.css';
 
 const DemographicsPage = () => {

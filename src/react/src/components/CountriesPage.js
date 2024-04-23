@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './CountriesPage.css';
-import useCountryListStore from '../store/useCountryListStore';
+import useCountryListStore from '../../../store/useCountryListStore';
 
 const CountriesPage = () => {
     const { countryList, fetchCountryList } = useCountryListStore();

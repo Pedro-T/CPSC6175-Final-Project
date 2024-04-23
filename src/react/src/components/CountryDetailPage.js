@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import useCountryDetailStore from '../store/useCountryDetailStore';
+import useCountryDetailStore from '../../../store/useCountryDetailStore';
 import './CountryDetailPage.css';
 
 const CountryDetailPage = () => {
