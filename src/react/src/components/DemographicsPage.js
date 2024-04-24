@@ -1,6 +1,7 @@
 import React from 'react';
 import useDemographicsStore from '../../../store/useDemographicsStore';
 import './DemographicsPage.css';
+import {Link} from "react-router-dom";
 
 const DemographicsPage = () => {
     const languages = ['English', 'Spanish', 'French', 'Arabic', 'Chinese', 'Russian'];
@@ -24,7 +25,15 @@ const DemographicsPage = () => {
 
     return (
         <div className="demographics-page">
-            <h1>Demographics</h1>
+            <nav className="navigation-dp">
+                <Link to="/countries" className="nav-link">Countries</Link>
+                <Link to="/regions" className="nav-link">Regions</Link>
+                <Link to="/demographics" className="nav-link">Demographics</Link>
+                <Link to="/" className="nav-home-dp">Home</Link>
+            </nav>
+            <div className="dp-title">
+                <h1 className="title-dp">Demographics</h1>
+            </div>
             <div className="search-areas">
                 {/* Search by language */}
                 <div className="search-area">
@@ -59,7 +68,7 @@ const DemographicsPage = () => {
                         <h2>Countries speaking the selected language:</h2>
                         <ul>
                             {countriesByLanguage.map((country, index) => (
-                                <li key={index}>{country.name}</li>
+                                <li key={index}>{country.name.common || 'Unnamed Country'}</li>
                             ))}
                         </ul>
                     </div>
@@ -70,12 +79,20 @@ const DemographicsPage = () => {
                         <h2>Countries using the selected currency:</h2>
                         <ul>
                             {countriesByCurrency.map((country, index) => (
-                                <li key={index}>{country.name}</li>
+                                <li key={index}>{country.name.common || 'Unnamed Country'}</li>
                             ))}
                         </ul>
                     </div>
                 )}
             </div>
+            <footer className="footer-dp">
+                <p>World Explorer</p>
+                <div className="footer-links-dp2">
+                    <Link to="/countries" className="footer-link-dp">Countries</Link>
+                    <Link to="/regions" className="footer-link-dp">Regions</Link>
+                    <Link to="/demographics" className="footer-link-dp">Demographics</Link>
+                </div>
+            </footer>
         </div>
     );
 };

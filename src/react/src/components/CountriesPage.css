@@ -2,6 +2,64 @@
     padding: 20px;
 }
 
+.navigation-cp {
+    display: inline-flex;
+    height: 50px;
+    padding: 56px 100px;
+    justify-content: center;
+    align-items: center ;
+    gap: 0;
+    flex-shrink: 0;
+    background: #FFF;
+    float: right;
+}
+
+.nav-link {
+    color: #000;
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: Inter, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+}
+
+.nav-home {
+    color: white;
+    background-color: #000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: Inter, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: gray;
+}
+
+.title-container {
+    position: relative;
+}
+
+.title-cp {
+    position: absolute;
+    margin: 150px 1px 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: #000000;
+}
+
 .regions-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

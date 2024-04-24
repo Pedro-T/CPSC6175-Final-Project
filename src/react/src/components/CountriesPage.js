@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import './CountriesPage.css';
 import useCountryListStore from '../../../store/useCountryListStore';
+import {Link} from "react-router-dom";
 
 const CountriesPage = () => {
     const { countryList, fetchCountryList } = useCountryListStore();
@@ -14,7 +15,15 @@ const CountriesPage = () => {
 
     return (
         <div className="countries-page">
-            <h1>Countries</h1>
+            <nav className="navigation-cp">
+                <Link to="/countries" className="nav-link">Countries</Link>
+                <Link to="/regions" className="nav-link">Regions</Link>
+                <Link to="/demographics" className="nav-link">Demographics</Link>
+                <Link to="/" className="nav-home">Home</Link>
+            </nav>
+            <div className="title-container">
+                <h1 className="title-cp">Countries</h1>
+            </div>
             <div className="regions-container">
                 {countryList.map((regionData) =>
                     <div key={regionData.region} className="region">

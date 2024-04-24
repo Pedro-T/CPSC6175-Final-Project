@@ -1,22 +1,74 @@
 .demographics-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 20px;
 }
 
+.navigation-dp {
+    display: inline-flex;
+    height: 50px;
+    padding: 56px 100px;
+    justify-content: center;
+    align-items: center ;
+    gap: 0;
+    flex-shrink: 0;
+    background: #FFF;
+    float: right;
+}
+
+.nav-link {
+    color: #000;
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: Inter, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+}
+
+.nav-home-dp {
+    color: white;
+    background-color: #000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: Inter, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: gray;
+}
+
+.dp-title {
+    text-align: center;
+    padding: 20px;
+}
+
+.title-dp {
+    margin-top: 150px;
+    font-size: 2.5rem;
+    color: #000000;
+}
 .search-areas {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
-    max-width: 600px;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .search-area {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 20px auto;
 }
 
 .search-area label {
@@ -30,28 +82,13 @@
     border-radius: 4px;
 }
 
-.search-area button {
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.search-area button:hover {
-    background-color: #0056b3;
-}
-
-.search-area button:disabled {
-    background-color: #cccccc;
-    cursor: default;
-}
-
 .results {
     width: 100%;
-    max-width: 600px;
+    height: 800px;
+    border: 2px solid #000000;
+    overflow: auto;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .results h2 {
@@ -74,6 +111,37 @@
 .error {
     color: #ff0000;
     margin: 10px 0;
+}
+
+.footer-dp {
+    padding: 20px;
+    background: #FFF;
+}
+
+.footer-dp p {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Inter, serif;
+}
+
+.footer-links-dp2 {
+    margin-top: 10px;
+    float: right;
+    font-family: Inter, serif;
+    margin-bottom: 100px;
+}
+
+.footer-link-dp {
+    color: #000;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-link-dp:hover {
+    color: gray;
 }
 
 @media (max-width: 768px) {
