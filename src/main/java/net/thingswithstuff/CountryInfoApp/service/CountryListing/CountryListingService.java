@@ -10,6 +10,8 @@ public interface CountryListingService {
 
     List<CountryNamesResponse> getForRegion(String region);
 
+    List<CountryNamesResponse> getForLanguage(String language);
+
     List<CountryNamesResponse> getForCurrency(String currency);
 
 }

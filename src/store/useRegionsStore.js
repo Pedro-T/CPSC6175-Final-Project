@@ -1,8 +1,6 @@
 import create from 'zustand';
 import axios from 'axios';
 
-const API_BASE_URL = 'https://restcountries.com/v3.1';
-
 const useRegionsStore = create((set) => ({
     regions: [],
     selectedRegion: '',
@@ -13,7 +11,7 @@ const useRegionsStore = create((set) => ({
     selectAndFetchCountriesByRegion: async (regionName) => {
         set({ loading: true, error: '', selectedRegion: regionName, countries: [] });
         try {
-            const response = await axios.get(`${API_BASE_URL}/region/${regionName}`);
+            const response = await axios.get(`http://localhost:8080/countrylist/region/${regionName}`);
             set({ countries: response.data, loading: false });
         } catch (error) {
             set({ error: error.message, loading: false });
@@ -22,3 +20,4 @@ const useRegionsStore = create((set) => ({
 }));
 
 export default useRegionsStore;
+

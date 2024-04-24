@@ -7,20 +7,20 @@ const useDemographicsStore = create((set) => ({
     loading: false,
     error: '',
 
-    fetchCountriesByLanguage: async (language) => {
+    fetchCountriesByLanguage: async (languageName) => {
         set({ loading: true, error: '', countriesByCurrency: [] });
         try {
-            const response = await axios.get(`https://restcountries.com/v3.1/lang/${language}`);
+            const response = await axios.get(`http://localhost:8080/countrylist/language/${languageName}`);
             set({ countriesByLanguage: response.data, loading: false });
         } catch (error) {
             set({ error: 'Error fetching countries by language', loading: false });
         }
     },
 
-    fetchCountriesByCurrency: async (currency) => {
-        set({ loading: true, error: '', countriesByLanguage: [] }); // Reset countries by language
+    fetchCountriesByCurrency: async (currencyName) => {
+        set({ loading: true, error: '', countriesByLanguage: [] });
         try {
-            const response = await axios.get(`https://restcountries.com/v3.1/currency/${currency}`);
+            const response = await axios.get(`http://localhost:8080/countrylist/currency/${currencyName}`);
             set({ countriesByCurrency: response.data, loading: false });
         } catch (error) {
             set({ error: 'Error fetching countries by currency', loading: false });
@@ -29,4 +29,5 @@ const useDemographicsStore = create((set) => ({
 }));
 
 export default useDemographicsStore;
+
 

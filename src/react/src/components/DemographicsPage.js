@@ -4,7 +4,7 @@ import './DemographicsPage.css';
 import {Link} from "react-router-dom";
 
 const DemographicsPage = () => {
-    const languages = ['English', 'Spanish', 'French', 'Arabic', 'Chinese', 'Russian'];
+    const languages = ['english', 'spanish', 'french', 'arabic', 'chinese', 'russian'];
     const currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD'];
     const {
         countriesByLanguage,
