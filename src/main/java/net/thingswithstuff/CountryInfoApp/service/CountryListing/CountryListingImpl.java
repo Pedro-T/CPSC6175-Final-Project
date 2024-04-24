@@ -23,7 +23,7 @@ public class CountryListingImpl implements CountryListingService {
     private static final String REGION_QUERY_URL = "https://restcountries.com/v3.1/region/";
     private static final String CURRENCY_QUERY_URL = "https://restcountries.com/v3.1/currency/";
 
-    private static final String LANGUAGE_QUERY_URL = "https://restcountries.com/v3.1/language/";
+    private static final String LANGUAGE_QUERY_URL = "https://restcountries.com/v3.1/lang/";
 
     private final Map<String, List<CountryNamesResponse>> storedRegionResponses = new HashMap<>();
     private final Map<String, List<CountryNamesResponse>> storedCurrencyResponses = new HashMap<>();

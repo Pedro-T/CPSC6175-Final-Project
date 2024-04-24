@@ -8,6 +8,7 @@ const useDemographicsStore = create((set) => ({
     error: '',
 
     fetchCountriesByLanguage: async (languageName) => {
+        console.log("Fetching countries for language:", languageName);
         set({ loading: true, error: '', countriesByCurrency: [] });
         try {
             const response = await axios.get(`http://localhost:8080/countrylist/language/${languageName}`);
@@ -18,6 +19,7 @@ const useDemographicsStore = create((set) => ({
     },
 
     fetchCountriesByCurrency: async (currencyName) => {
+        console.log("Fetching countries for currency:", currencyName);
         set({ loading: true, error: '', countriesByLanguage: [] });
         try {
             const response = await axios.get(`http://localhost:8080/countrylist/currency/${currencyName}`);

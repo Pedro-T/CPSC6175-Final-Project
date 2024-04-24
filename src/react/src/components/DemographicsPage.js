@@ -4,7 +4,7 @@ import './DemographicsPage.css';
 import {Link} from "react-router-dom";
 
 const DemographicsPage = () => {
-    const languages = ['english', 'spanish', 'french', 'arabic', 'chinese', 'russian'];
+    const languages = ['English', 'Spanish', 'French', 'Arabic', 'Chinese', 'Russian'];
     const currencies = ['USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'SEK', 'NZD'];
     const {
         countriesByLanguage,
@@ -15,12 +15,20 @@ const DemographicsPage = () => {
         error,
     } = useDemographicsStore();
 
-    const handleLanguageSubmit = (selectedLanguage) => {
-        fetchCountriesByLanguage(selectedLanguage);
+    const handleLanguageSubmit = async (selectedLanguage) => {
+        try {
+            await fetchCountriesByLanguage(selectedLanguage);
+        } catch (error) {
+            console.error('Failed to fetch countries for language:', error);
+        }
     };
 
-    const handleCurrencySubmit = (selectedCurrency) => {
-        fetchCountriesByCurrency(selectedCurrency);
+    const handleCurrencySubmit = async (selectedCurrency) => {
+        try {
+            await fetchCountriesByCurrency(selectedCurrency);
+        } catch (error) {
+            console.error('Failed to fetch countries for currency:', error);
+        }
     };
 
     return (
@@ -61,30 +69,29 @@ const DemographicsPage = () => {
             {loading && <p>Loading...</p>}
             {error && <p className="error">{error}</p>}
 
-            {/* Results for languages */}
             <div className="results">
                 {countriesByLanguage.length > 0 && (
                     <div>
                         <h2>Countries speaking the selected language:</h2>
                         <ul>
                             {countriesByLanguage.map((country, index) => (
-                                <li key={index}>{country.name.common || 'Unnamed Country'}</li>
+                                <li key={index}>{country.nameCommon || 'Unnamed Country'}</li>
                             ))}
                         </ul>
                     </div>
                 )}
-                {/* Results for currencies */}
                 {countriesByCurrency.length > 0 && (
                     <div>
                         <h2>Countries using the selected currency:</h2>
                         <ul>
                             {countriesByCurrency.map((country, index) => (
-                                <li key={index}>{country.name.common || 'Unnamed Country'}</li>
+                                <li key={index}>{country.nameCommon || 'Unnamed Country'}</li>
                             ))}
                         </ul>
                     </div>
                 )}
             </div>
+
             <footer className="footer-dp">
                 <p>World Explorer</p>
                 <div className="footer-links-dp2">
