@@ -2,6 +2,8 @@ package net.thingswithstuff.CountryInfoApp.service.CountryInfo;
 
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.PathNotFoundException;
+import com.jayway.jsonpath.TypeRef;
 import net.thingswithstuff.CountryInfoApp.model.CountryInfoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,20 +36,42 @@ public class CountryInfoImpl implements CountryInfoService {
         return template.getForObject(String.format("%s%s%s", queryURL, cca2, queryFields), String.class);
     }
 
+    /**
+     * Attempt to map a json value based on the given path and return the default if the path is invalid or
+     * the retrieved value is not the correct type
+     * @param document json document to read
+     * @param path json path to query
+     * @param type expected type
+     * @param defaultValue val to return in an exception situation
+     * @return mapped value
+     */
+    private <T> T mapJsonValue(Object document, String path, Class<T> type, T defaultValue) {
+        try {
+            Object val = JsonPath.read(document, path);
+            if (type.isInstance(val)) {
+                return type.cast(val);
+            } else {
+                return defaultValue;
+            }
+        } catch (PathNotFoundException e) {
+            return defaultValue;
+        }
+    }
+
     private CountryInfoResponse parseResponse(String jsonResponse) {
         final Object document = Configuration.defaultConfiguration().jsonProvider().parse(jsonResponse);
         return CountryInfoResponse.builder()
-                .nameCommon(JsonPath.read(document , "$.name.common"))
-                .nameOfficial(JsonPath.read(document , "$.name.official"))
-                .cca2(JsonPath.read(document , "$.cca2"))
-                .capital(JsonPath.read(document , "$.capital.[0]"))
-                .population(JsonPath.read(document , "$.population"))
-                .region(JsonPath.read(document , "$.region"))
-                .subRegion(JsonPath.read(document , "$.subregion"))
-                .languages(JsonPath.read(document, "$.languages.*"))
-                .currencies(JsonPath.read(document, "$.currencies.*.name"))
-                .flagUrl(JsonPath.read(document, "$.flags.png"))
-                .flagAltText(JsonPath.read(document, "$.flags.alt"))
+                .nameCommon(mapJsonValue(document , "$.name.common", String.class, ""))
+                .nameOfficial(mapJsonValue(document , "$.name.official", String.class, ""))
+                .cca2(mapJsonValue(document , "$.cca2", String.class, ""))
+                .capital(mapJsonValue(document , "$.capital.[0]", String.class, ""))
+                .population(mapJsonValue(document , "$.population", Integer.class, 0))
+                .region(mapJsonValue(document , "$.region", String.class, ""))
+                .subRegion(mapJsonValue(document , "$.subregion", String.class, ""))
+                .languages(mapJsonValue(document, "$.languages.*", List.class, Collections.emptyList()))
+                .currencies(mapJsonValue(document, "$.currencies.*.name", List.class, Collections.emptyList()))
+                .flagUrl(mapJsonValue(document, "$.flags.png", String.class, ""))
+                .flagAltText(mapJsonValue(document, "$.flags.alt", String.class, ""))
                 .build();
     }
 
