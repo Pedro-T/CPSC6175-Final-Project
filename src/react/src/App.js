@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import CountriesPage from "./components/CountriesPage";
-import CountryDetailPage from "./components/CountryDetailPage";
 import RegionsPage from "./components/RegionsPage";
 import DemographicsPage from "./components/DemographicsPage";
 
@@ -13,7 +12,6 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/countries" element={<CountriesPage />} />
-                <Route path="/country/:cca2" element={<CountryDetailPage />} />
                 <Route path="/regions" element={<RegionsPage />} />
                 <Route path="/demographics" element={<DemographicsPage />} />
                 {/* Redirect all other paths to home */}

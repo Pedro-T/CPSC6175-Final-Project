@@ -1,17 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import './CountriesPage.css';
-import useCountryListStore from '../../../store/useCountryListStore';
-import {Link} from "react-router-dom";
+import useCountryStore from '../../../store/useCountryStore';
+import { Link } from 'react-router-dom';
 
 const CountriesPage = () => {
-    const { countryList, fetchCountryList } = useCountryListStore();
+    const { countryDetails, fetchCountryDetails, loading, error } = useCountryStore();
+    const [searchTerm, setSearchTerm] = useState('');
 
-    useEffect(() => {
-        if (countryList.length === 0) {
-            fetchCountryList();
-        }
-    }, [countryList, fetchCountryList]);
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
 
+    const handleSearchSubmit = async (e) => {
+        e.preventDefault();
+        await fetchCountryDetails(searchTerm);
+    };
 
     return (
         <div className="countries-page">
@@ -24,23 +27,25 @@ const CountriesPage = () => {
             <div className="title-container">
                 <h1 className="title-cp">Countries</h1>
             </div>
-            <div className="regions-container">
-                {countryList.map((regionData) =>
-                    <div key={regionData.region} className="region">
-                        <h2>{regionData.region}</h2>
-                        <ul>
-                            {regionData.countries.map(country => (
-                                <li key={country.name}>
-                                    <a
-                                        href={`/country/${encodeURIComponent(country.name)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        {country.name}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
+            <div className="search-container">
+                <form onSubmit={handleSearchSubmit}>
+                    <input
+                        type="text"
+                        className="search-input"
+                        placeholder="Enter the name of the country"
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
+                    <button type="submit" className="search-button">Search</button>
+                </form>
+            </div>
+
+            <div className="search-results">
+                {loading && <p>Loading...</p>}
+                {error && <p className="error">{error}</p>}
+                {countryDetails && (
+                    <div className="search-result">
+                        <h3>{countryDetails.name}</h3>
                     </div>
                 )}
             </div>

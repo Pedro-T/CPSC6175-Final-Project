@@ -12,7 +12,12 @@ const useRegionsStore = create((set) => ({
         set({ loading: true, error: '', selectedRegion: regionName, countries: [] });
         try {
             const response = await axios.get(`http://localhost:8080/countrylist/region/${regionName}`);
-            set({ countries: response.data, loading: false });
+            const updatedCountries = response.data.map(country => ({
+                ...country,
+                population: country.population,
+                languages: country.languages
+            }));
+            set({ countries: updatedCountries, loading: false });
         } catch (error) {
             set({ error: error.message, loading: false });
         }

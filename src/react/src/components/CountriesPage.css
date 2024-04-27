@@ -47,17 +47,61 @@
 }
 
 .title-container {
-    position: relative;
+    position: static;
+    width: 100%;
+    align-content: center;
 }
 
 .title-cp {
-    position: absolute;
-    margin: 150px 1px 50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 50px;
     font-size: 2.5rem;
+    text-align: center;
     color: #000000;
+}
+
+.search-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.search-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 1rem;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #333;
+}
+
+
+@media (max-width: 768px) {
+    .search-container {
+        margin-top: 10px;
+    }
+
+    .search-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .search-button {
+        width: 100%;
+    }
 }
 
 .regions-container {
