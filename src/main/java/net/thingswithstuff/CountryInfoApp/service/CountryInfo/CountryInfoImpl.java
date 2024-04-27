@@ -3,7 +3,6 @@ package net.thingswithstuff.CountryInfoApp.service.CountryInfo;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
-import com.jayway.jsonpath.TypeRef;
 import net.thingswithstuff.CountryInfoApp.model.CountryInfoResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
