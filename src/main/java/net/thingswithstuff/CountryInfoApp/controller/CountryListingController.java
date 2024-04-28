@@ -29,6 +29,11 @@ public class CountryListingController {
         return service.getForRegion(regionName);
     }
 
+    @RequestMapping(value = "/language/{language}", method = RequestMethod.GET)
+    public List<CountryNamesResponse> getNamesByLanguage(@PathVariable String language) {
+        return service.getForLanguage(language);
+    }
+
     @RequestMapping(value = "/currency/{currencyName}", method = RequestMethod.GET)
     public List<CountryNamesResponse> getNamesByCurrency(@PathVariable String currencyName) {
         return service.getForCurrency(currencyName);

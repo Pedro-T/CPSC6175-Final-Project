@@ -12,4 +12,6 @@ public interface CountryListingService {
 
     List<CountryNamesResponse> getForCurrency(String currency);
 
+    List<CountryNamesResponse> getForLanguage(String language);
+
 }
