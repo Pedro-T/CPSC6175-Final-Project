@@ -1,0 +1,178 @@
+.navigation-rp {
+    display: inline-flex;
+    height: 50px;
+    padding: 56px 100px;
+    justify-content: center;
+    align-items: center ;
+    gap: 0;
+    flex-shrink: 0;
+    background: #FFF;
+    float: right;
+}
+
+.nav-link {
+    color: #000;
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: Inter, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+}
+
+.nav-home-rp {
+    color: white;
+    background-color: #000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: Inter, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: gray;
+}
+
+.rp-title {
+    text-align: center;
+    padding: 20px;
+}
+
+.title-rp {
+    margin-top: 150px;
+    font-size: 2.5rem;
+    color: #000000;
+}
+
+.region-lists {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.region {
+    flex-basis: calc(33% - 40px);
+    margin: 20px;
+    background: #f9f9f9;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.region h2 {
+    margin-top: 0;
+}
+
+.region ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.region ul li button {
+    background: none;
+    border: none;
+    color: #007bff;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.region ul li button:hover {
+    text-decoration: underline;
+}
+
+.country-data {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+}
+
+.country-data h3 {
+    margin-top: 0;
+}
+
+.country-data ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.country-data ul li {
+    margin-bottom: 5px;
+}
+
+.clickable {
+    cursor: pointer;
+    color: #0645AD;
+    text-decoration: underline;
+}
+
+.clickable:hover {
+    color: #0B0080;
+}
+
+.country-tooltip {
+    position: absolute;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    z-index: 10;
+    width: 200px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    display: none;
+}
+
+li:hover .country-tooltip {
+    display: block;
+}
+
+
+.footer-rp {
+    padding: 20px;
+    background: #FFF;
+}
+
+.footer-rp p {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Inter, serif;
+}
+
+.footer-links-rp2 {
+    margin-top: 10px;
+    float: right;
+    font-family: Inter, serif;
+    margin-bottom: 100px;
+}
+
+.footer-link-rp {
+    color: #000;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-link-rp:hover {
+    color: gray;
+}
+
+@media (max-width: 768px) {
+    .region-lists {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .continent {
+        flex-basis: 80%;
+        margin-bottom: 20px;
+    }
+}

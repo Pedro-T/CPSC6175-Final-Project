@@ -1,0 +1,142 @@
+.navigation {
+    display: inline-flex;
+    height: 50px;
+    padding: 56px 100px;
+    justify-content: center;
+    align-items: center ;
+    gap: 0;
+    flex-shrink: 0;
+    background: #FFF;
+    float: right;
+}
+
+.nav-link {
+    color: #000;
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: Inter, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+}
+
+.nav-link-home {
+    color: white;
+    background-color: #000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: Inter, serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    color: gray;
+}
+
+.main-content {
+    text-align: center;
+    padding: 20px;
+}
+
+.title {
+    margin-top: 150px;
+    font-size: 2.5rem;
+    color: #000000;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #828282;
+}
+
+.map-container {
+    height: 600px;
+    margin: 20px auto;
+}
+.cta-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.cta,
+.cta1,
+.cta2 {
+    display: flex;
+    width: 220px;
+    height: 100px;
+    padding: 20px;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-size: cover;
+    text-align: center;
+    flex: 0 0 auto;
+}
+
+.cta {
+    background-image: url('./images/CountriesbyName.png');
+}
+
+.cta1 {
+    background-image: url('./images/CountriesbyRegion.png');
+}
+
+.cta2 {
+    background-image: url('./images/CountriesbyDemographics.png');
+}
+
+.cta:hover {
+    background-color: #0056b3;
+}
+
+.footer {
+    padding: 20px;
+    background: #FFF;
+}
+
+.footer p {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Inter, serif;
+}
+
+.footer-links {
+    margin-top: 10px;
+    float: right;
+    font-family: Inter, serif;
+}
+
+.footer-link {
+    color: #000;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: gray;
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        flex-direction: column;
+    }
+
+    .nav-link {
+        margin-bottom: 10px;
+    }
+}

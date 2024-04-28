@@ -25,6 +25,7 @@ public class CountryListingImpl implements CountryListingService {
 
     private final Map<String, List<CountryNamesResponse>> storedRegionResponses = new HashMap<>();
     private final Map<String, List<CountryNamesResponse>> storedCurrencyResponses = new HashMap<>();
+
     private final RestTemplate template;
 
     @Autowired
