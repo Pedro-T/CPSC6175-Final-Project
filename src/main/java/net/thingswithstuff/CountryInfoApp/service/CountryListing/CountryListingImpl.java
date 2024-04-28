@@ -23,12 +23,9 @@ public class CountryListingImpl implements CountryListingService {
     private static final String REGION_QUERY_URL = "https://restcountries.com/v3.1/region/";
     private static final String CURRENCY_QUERY_URL = "https://restcountries.com/v3.1/currency/";
 
-    private static final String LANGUAGE_QUERY_URL = "https://restcountries.com/v3.1/lang/";
-
     private final Map<String, List<CountryNamesResponse>> storedRegionResponses = new HashMap<>();
     private final Map<String, List<CountryNamesResponse>> storedCurrencyResponses = new HashMap<>();
 
-    private final Map<String, List<CountryNamesResponse>> storedLanguageResponses = new HashMap<>();
     private final RestTemplate template;
 
     @Autowired
@@ -49,11 +46,6 @@ public class CountryListingImpl implements CountryListingService {
     @Override
     public List<CountryNamesResponse> getForCurrency(String currency) {
         return getResponse(currency, CURRENCY_QUERY_URL, storedCurrencyResponses);
-    }
-
-    @Override
-    public List<CountryNamesResponse> getForLanguage(String currency) {
-        return getResponse(currency, LANGUAGE_QUERY_URL, storedLanguageResponses);
     }
 
     /**
