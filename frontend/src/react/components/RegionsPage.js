@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import useRegionsStore from '../../../store/useRegionsStore';
+import useRegionsStore from '../../store/useRegionsStore';
 import './RegionsPage.css';
 
 const RegionsPage = () => {

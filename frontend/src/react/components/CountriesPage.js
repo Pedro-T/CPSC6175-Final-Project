@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './CountriesPage.css';
-import useCountryStore from '../../../store/useCountryStore';
+import useCountryStore from '../../store/useCountryStore';
 import { Link } from 'react-router-dom';
 
 const CountriesPage = () => {

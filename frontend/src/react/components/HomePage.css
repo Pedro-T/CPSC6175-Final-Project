@@ -86,15 +86,15 @@
 }
 
 .cta {
-    background-image: url('./images/CountriesbyName.png');
+    background-image: url('images/CountriesbyName.png');
 }
 
 .cta1 {
-    background-image: url('./images/CountriesbyRegion.png');
+    background-image: url('images/CountriesbyRegion.png');
 }
 
 .cta2 {
-    background-image: url('./images/CountriesbyDemographics.png');
+    background-image: url('images/CountriesbyDemographics.png');
 }
 
 .cta:hover {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useDemographicsStore from '../../../store/useDemographicsStore';
+import useDemographicsStore from '../../store/useDemographicsStore';
 import './DemographicsPage.css';
 import {Link} from "react-router-dom";
 
