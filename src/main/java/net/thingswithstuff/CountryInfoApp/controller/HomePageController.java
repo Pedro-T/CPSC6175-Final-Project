@@ -9,6 +9,6 @@ public class HomePageController {
 
     @GetMapping(value = {"/", "/countries", "/regions", "/demographics"})
     public String index() {
-        return "index";
+        return "forward:/index.html";
     }
 }
