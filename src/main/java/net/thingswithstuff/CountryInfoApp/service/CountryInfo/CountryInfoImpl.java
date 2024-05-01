@@ -15,14 +15,18 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CountryInfoImpl implements CountryInfoService {
 
 
+    private static final String nameMapQueryURL = "https://restcountries.com/v3.1/all?fields=name,cca2";
     private static final String queryURL = "https://restcountries.com/v3.1/alpha/";
     private static final String queryFields = "?fields=name,cca2,capital,population,region,subregion,languages,currencies,flags";
-    private final HashMap<String, CountryInfoResponse> storedResponses = new HashMap<>();
+    private final Map<String, CountryInfoResponse> storedResponses = new HashMap<>();
+
+    private final Map<String, String> countryNamesMap = new HashMap<>();
     private final RestTemplate template;
 
     @Autowired
@@ -30,6 +34,36 @@ public class CountryInfoImpl implements CountryInfoService {
         this.template = template;
     }
 
+    private void populateCountryNamesMap() {
+        try {
+            final String namesListResponse = template.getForObject(nameMapQueryURL, String.class);
+            Object document = Configuration.defaultConfiguration().jsonProvider().parse(namesListResponse);
+            List<Map<String, Object>> countryList = JsonPath.read(document, "$");
+            for (Map<String, Object> country : countryList) {
+                String cca2 = mapJsonValue(country, "$.cca2", String.class, "");
+                if (cca2.isBlank()) {
+                    continue;
+                }
+                List<String> names = mapJsonValue(country, "$.name.nativeName.*.*", List.class, Collections.emptyList());
+                names.add(mapJsonValue(country, "$.name.official", String.class, ""));
+                names.add(mapJsonValue(country, "$.name.common", String.class, ""));
+                for (String name : names) {
+                    countryNamesMap.put(name.toLowerCase(), cca2);
+                }
+            }
+        } catch (HttpClientErrorException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "External API unavailable.");
+        } catch (RestClientException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error populating country name table information.");
+        }
+    }
+
+    private String nameToIdentifier(String name) {
+        if (countryNamesMap.isEmpty()) {
+            populateCountryNamesMap();
+        }
+        return countryNamesMap.getOrDefault(name, "");
+    }
 
     private String getResponseString(String cca2) {
         return template.getForObject(String.format("%s%s%s", queryURL, cca2, queryFields), String.class);
@@ -95,7 +129,11 @@ public class CountryInfoImpl implements CountryInfoService {
     }
 
     @Override
-    public List<CountryInfoResponse> getMultipleCountries(List<String> cca2) {
-        return null;
+    public CountryInfoResponse getSingleCountryByName(String name) {
+        final String cca2 = nameToIdentifier(name.toLowerCase());
+        if (cca2.isBlank()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format("Unknown country name: %s", name));
+        }
+        return getSingleCountry(cca2);
     }
 }

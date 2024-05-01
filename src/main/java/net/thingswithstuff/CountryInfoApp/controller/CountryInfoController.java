@@ -21,4 +21,7 @@ public class CountryInfoController {
     public CountryInfoResponse getByCca2(@PathVariable String cca2) {
         return service.getSingleCountry(cca2);
     }
+
+    @RequestMapping(value = "/name/{name}", method = RequestMethod.GET)
+    public CountryInfoResponse getByName(@PathVariable String name) { return service.getSingleCountryByName(name);}
 }
