@@ -54,6 +54,10 @@ public class TestSingleCountryDetails {
         );
     }
 
+    /**
+     * Test for handling of country detail response where currency or language attributes have multiple values
+     * @throws IOException
+     */
     @Test
     void multipleLanguageCurrencyLists() throws IOException {
         final String cca2 = "zz";
@@ -74,6 +78,28 @@ public class TestSingleCountryDetails {
                 () -> assertEquals("United States dollar", currencies.get(0)),
                 () -> assertEquals("Fake Other Dollar", currencies.get(1)),
                 () -> assertEquals("Fake Third Dollar", currencies.get(2))
+        );
+    }
+
+    @Test
+    void partialDetailsResponse() throws IOException {
+        final String cca2 = "aq";
+        final String mockExternalResponse = new String(Files.readAllBytes(Paths.get("src/test/resources/fake-responses/single-country-partial.json")));
+        when(template.getForObject(eq("https://restcountries.com/v3.1/alpha/aq?fields=name,cca2,capital,population,region,subregion,languages,currencies,flags"), eq(String.class))).thenReturn(mockExternalResponse);
+        final CountryInfoResponse appResponse = service.getSingleCountry(cca2);
+
+        assertAll(
+                () -> assertEquals("Antarctica", appResponse.getNameCommon()),
+                () -> assertEquals("Antarctica", appResponse.getNameOfficial()),
+                () -> assertEquals("AQ", appResponse.getCca2()),
+                () -> assertEquals("", appResponse.getCapital()),
+                () -> assertEquals(1000, appResponse.getPopulation()),
+                () -> assertEquals("Antarctic", appResponse.getRegion()),
+                () -> assertEquals("", appResponse.getSubRegion()),
+                () -> assertEquals(0, appResponse.getLanguages().size()),
+                () -> assertEquals(0, appResponse.getCurrencies().size()),
+                () -> assertEquals("https://flagcdn.com/w320/aq.png", appResponse.getFlagUrl()),
+                () -> assertEquals("", appResponse.getFlagAltText())
         );
     }
 }

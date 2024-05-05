@@ -71,4 +71,32 @@ public class TestCountryList {
         );
     }
 
+    /**
+     * Basically the same as currency list test and output since it's a unified flow.
+     * The format of the response from the external API is the same.
+     * This is mostly testing that no strange error occurs when using language instead.
+     * @throws IOException
+     */
+    @Test
+    void testCountryListByLanguageValid() throws IOException {
+        final String language = "test-lang";
+        final String mockExternalResponse = new String(Files.readAllBytes(Paths.get("src/test/resources/fake-responses/currency-usd-trimmed.json")));
+        when(template.getForObject(eq("https://restcountries.com/v3.1/lang/test-lang?fields=name,cca2"), eq(String.class))).thenReturn(mockExternalResponse);
+        final List<CountryNamesResponse> appResponse = service.getForLanguage(language);
+
+        assertEquals(2, appResponse.size());
+
+        final CountryNamesResponse countryOne = appResponse.get(0);
+        final CountryNamesResponse countryTwo = appResponse.get(1);
+
+        assertAll(
+                () -> assertEquals("United States Minor Outlying Islands", countryOne.getNameCommon()),
+                () -> assertEquals("United States Minor Outlying Islands", countryOne.getNameOfficial()),
+                () -> assertEquals("UM", countryOne.getCca2()),
+                () -> assertEquals("Turks and Caicos Islands", countryTwo.getNameCommon()),
+                () -> assertEquals("Turks and Caicos Islands", countryTwo.getNameOfficial()),
+                () -> assertEquals("TC", countryTwo.getCca2())
+        );
+    }
+
 }
