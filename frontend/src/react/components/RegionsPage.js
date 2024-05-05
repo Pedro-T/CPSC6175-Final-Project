@@ -3,6 +3,7 @@ import Navbar from "./common/navbar";
 import Footer from "./common/footer";
 import useRegionsStore from '../../store/useRegionsStore';
 import './RegionsPage.css';
+import './common/CommonPageElements.css';
 
 const RegionsPage = () => {
     const { selectAndFetchCountriesByRegion, selectedRegion, countries, loading, error } = useRegionsStore();
@@ -35,10 +36,10 @@ const RegionsPage = () => {
     };
 
     return (
-        <div className="regions-page">
+        <div className="page">
             <Navbar />
-            <div className="rp-title">
-                <h1 className="title-rp">Regions</h1>
+            <div className="title-container">
+                <h1 className="page-title">Regions</h1>
             </div>
             <div className="region-lists">
                 {uiRegions.map(continent => (
