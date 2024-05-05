@@ -54,6 +54,7 @@ chrome-user-data
 *.sublime-workspace
 *.swp
 *.swo
+/src/main/resources/static
 
 packages/react-devtools-core/dist
 packages/react-devtools-extensions/chrome/build
