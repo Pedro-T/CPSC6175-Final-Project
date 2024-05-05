@@ -86,19 +86,28 @@
 				<version>3.2.0</version>
 				<executions>
 					<execution>
-						<id>start-frontend</id>
-						<phase>compile</phase>
+						<id>install npm dependencies</id>
+						<configuration>
+							<workingDirectory>${project.basedir}/frontend</workingDirectory>
+							<executable>npm</executable>
+							<arguments>
+								<argument>install</argument>
+							</arguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>npm build</id>
 						<goals>
 							<goal>exec</goal>
 						</goals>
+						<phase>generate-resources</phase>
 						<configuration>
-							<executable>npm</executable>
 							<workingDirectory>${project.basedir}/frontend</workingDirectory>
+							<executable>npm</executable>
 							<arguments>
-								<argument>start</argument>
+								<argument>run</argument>
+								<argument>build</argument>
 							</arguments>
-							<async>true</async>
-							<asyncDestroyOnShutdown>true</asyncDestroyOnShutdown>
 						</configuration>
 					</execution>
 				</executions>
