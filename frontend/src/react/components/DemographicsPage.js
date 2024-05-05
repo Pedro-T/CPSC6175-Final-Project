@@ -3,6 +3,7 @@ import Navbar from "./common/navbar";
 import Footer from "./common/footer";
 import useDemographicsStore from '../../store/useDemographicsStore';
 import './DemographicsPage.css';
+import './common/CommonPageElements.css'
 
 
 const DemographicsPage = () => {
@@ -51,10 +52,10 @@ const DemographicsPage = () => {
     };
 
     return (
-        <div className="demographics-page">
+        <div className="page">
             <Navbar />
-            <div className="dp-title">
-                <h1 className="title-dp">Demographics</h1>
+            <div className="title-container">
+                <h1 className="page-title">Demographics</h1>
             </div>
             <div className="search-areas">
                 {/* Search by language */}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from "./common/navbar";
 import Footer from "./common/footer";
 import './CountriesPage.css';
+import './common/CommonPageElements.css'
 import useCountryStore from '../../store/useCountryStore';
 
 
@@ -19,10 +20,10 @@ const CountriesPage = () => {
     };
 
     return (
-        <div className="countries-page">
+        <div className="page">
             <Navbar />
             <div className="title-container">
-                <h1 className="title-cp">Countries</h1>
+                <h1 className="page-title">Countries</h1>
             </div>
             <div className="search-container">
                 <form onSubmit={handleSearchSubmit}>

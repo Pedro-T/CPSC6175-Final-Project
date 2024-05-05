@@ -1,17 +1,3 @@
-.demographics-page {
-    padding: 20px;
-}
-
-.dp-title {
-    text-align: center;
-    padding: 20px;
-}
-
-.title-dp {
-    margin-top: 50px;
-    font-size: 2.5rem;
-    color: #000000;
-}
 .search-areas {
     display: flex;
     justify-content: center;

@@ -7,6 +7,7 @@ import * as am5map from "@amcharts/amcharts5/map";
 import am5geodata_worldLow from "@amcharts/amcharts5-geodata/worldLow";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import './HomePage.css';
+import './common/CommonPageElements.css';
 
 const HomePage = () => {
     const chartRef = useRef(null);
@@ -56,10 +57,10 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div className="homepage">
+        <div className="page">
             <Navbar />
             <main className="main-content">
-                <h1 className="title">Explore the World.</h1>
+                <h1 className="page-title">Explore the World.</h1>
                 <p className="subtitle">Choose your destination.</p>
                 <div id="chartdiv" className="map-container"></div>
                 <div className="cta-container">

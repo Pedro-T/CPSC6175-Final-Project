@@ -1,20 +1,4 @@
-.countries-page {
-    padding: 20px;
-}
-
-.title-container {
-    text-align: center;
-    padding: 20px;
-}
-
-.title-cp {
-    margin-top: 50px;
-    font-size: 2.5rem;
-    color: #000000;
-}
-
 .search-container {
-    margin-top: 20px;
     text-align: center;
 }
 
@@ -45,7 +29,7 @@
 .search-results {
     margin-top: 20px;
     width: 100%;
-    height: 800px;
+    height: 70vh;
     border: 2px solid #000000;
     overflow: auto;
     padding: 10px;
