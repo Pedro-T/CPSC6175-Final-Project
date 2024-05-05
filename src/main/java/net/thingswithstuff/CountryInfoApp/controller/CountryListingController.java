@@ -18,11 +18,6 @@ public class CountryListingController {
     @Autowired
     private CountryListingService service;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<CountryNamesResponse> getAllNames() {
-        return service.getAll();
-    }
-
     @RequestMapping(value = "/region/{regionName}", method = RequestMethod.GET)
     public List<CountryNamesResponse> getNamesByRegion(@PathVariable String regionName) {
         return service.getForRegion(regionName);
