@@ -184,3 +184,7 @@
     color: #004499;
     text-decoration: underline;
 }
+
+.flag {
+    border: 1px solid #000000;
+}
