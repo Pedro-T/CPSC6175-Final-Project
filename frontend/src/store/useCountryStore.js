@@ -1,14 +1,17 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
 const useCountryStore = create((set) => ({
     countryDetails: null,
     loading: false,
     error: null,
 
-    fetchCountryDetails: async (countryName) => {
+    fetchCountryDetails: async (identifier) => {
         set({ loading: true, error: null });
         try {
-            const response = await fetch(`http://localhost:8080/countrylist/name/${encodeURIComponent(countryName)}`);
+            const urlPath = identifier.length === 2
+                ? `cca2/${encodeURIComponent(identifier.toUpperCase())}`
+                : `name/${encodeURIComponent(identifier)}`;
+            const response = await fetch(`http://localhost:8080/country/${urlPath}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch country details');
             }

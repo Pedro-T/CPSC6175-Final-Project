@@ -1,4 +1,4 @@
-import create from 'zustand';
+import {create} from 'zustand';
 import axios from 'axios';
 
 const useRegionsStore = create((set) => ({
@@ -13,9 +13,7 @@ const useRegionsStore = create((set) => ({
         try {
             const response = await axios.get(`http://localhost:8080/countrylist/region/${regionName}`);
             const updatedCountries = response.data.map(country => ({
-                ...country,
-                population: country.population,
-                languages: country.languages
+                ...country
             }));
             set({ countries: updatedCountries, loading: false });
         } catch (error) {

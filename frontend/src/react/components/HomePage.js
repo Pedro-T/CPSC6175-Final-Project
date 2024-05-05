@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import Navbar from "./common/navbar";
+import Footer from "./common/footer";
 import { Link } from 'react-router-dom';
 import * as am5 from "@amcharts/amcharts5";
 import * as am5map from "@amcharts/amcharts5/map";
@@ -40,23 +42,11 @@ const HomePage = () => {
             fill: am5.color(0x677935)
         });
 
-        polygonSeries.data.setAll([{
-            id: "US",
-            polygonSettings: {
-                fill: am5.color(0xFF3C38)
-            }
-        }, {
-            id: "CA",
-            polygonSettings: {
-                fill: am5.color(0xA23E48)
-            }
-        }, {
-            id: "MX",
-            polygonSettings: {
-                fill: am5.color(0xFF8C42)
-            }
-        }])
-
+        polygonSeries.data.setAll([
+            { id: "US", polygonSettings: { fill: am5.color(0xFF3C38) } },
+            { id: "CA", polygonSettings: { fill: am5.color(0xA23E48) } },
+            { id: "MX", polygonSettings: { fill: am5.color(0xFF8C42) } }
+        ]);
 
         chartRef.current = chart;
 
@@ -67,34 +57,18 @@ const HomePage = () => {
 
     return (
         <div className="homepage">
-            <nav className="navigation">
-                <Link to="/countries" className="nav-link">Countries</Link>
-                <Link to="/regions" className="nav-link">Regions</Link>
-                <Link to="/demographics" className="nav-link">Demographics</Link>
-                <Link to="/" className="nav-link-home">Home</Link>
-            </nav>
-
+            <Navbar />
             <main className="main-content">
                 <h1 className="title">Explore the World.</h1>
                 <p className="subtitle">Choose your destination.</p>
-
                 <div id="chartdiv" className="map-container"></div>
-
                 <div className="cta-container">
                     <Link to="/countries" className="cta"></Link>
                     <Link to="/regions" className="cta1"></Link>
                     <Link to="/demographics" className="cta2"></Link>
                 </div>
             </main>
-
-            <footer className="footer">
-                <p>World Explorer</p>
-                <div className="footer-links">
-                    <Link to="/countries" className="footer-link">Countries</Link>
-                    <Link to="/regions" className="footer-link">Regions</Link>
-                    <Link to="/demographics" className="footer-link">Demographics</Link>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };

@@ -17,7 +17,7 @@ public class CountryInfoController {
     @Autowired
     private CountryInfoService service;
 
-    @RequestMapping(value = "/{cca2}", method = RequestMethod.GET)
+    @RequestMapping(value = "/cca2/{cca2}", method = RequestMethod.GET)
     public CountryInfoResponse getByCca2(@PathVariable String cca2) {
         return service.getSingleCountry(cca2);
     }

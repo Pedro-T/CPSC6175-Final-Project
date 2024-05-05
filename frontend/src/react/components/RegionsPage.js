@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Navbar from "./common/navbar";
+import Footer from "./common/footer";
 import useRegionsStore from '../../store/useRegionsStore';
 import './RegionsPage.css';
 
@@ -35,12 +36,7 @@ const RegionsPage = () => {
 
     return (
         <div className="regions-page">
-            <nav className="navigation-rp">
-                <Link to="/countries" className="nav-link">Countries</Link>
-                <Link to="/regions" className="nav-link">Regions</Link>
-                <Link to="/demographics" className="nav-link">Demographics</Link>
-                <Link to="/" className="nav-home-dp">Home</Link>
-            </nav>
+            <Navbar />
             <div className="rp-title">
                 <h1 className="title-rp">Regions</h1>
             </div>
@@ -61,47 +57,31 @@ const RegionsPage = () => {
                 ))}
             </div>
 
-            {loading && <p>Loading...</p>}
-            {error && <p>{error}</p>}
-
-            {selectedRegion && !loading && (
-                <div className="country-data">
-                    <h3>{selectedRegion} Countries</h3>
+            <div className="country-data">
+                {loading && <p>Loading...</p>}
+                {error && <p>{error}</p>}
+                {!loading && countries.length > 0 ? (
                     <ul>
-                        {countries.length > 0 ? (
-                            countries.map((country, index) => (
-                                <li key={index}
-                                    onMouseEnter={(e) => handleMouseEnter(country, e)}
-                                    onMouseLeave={handleMouseLeave}>
-                                    {country.nameCommon}
-                                    {hoveredCountry === country && (
-                                        <div className="country-tooltip" style={{ left: `${tooltipPosition.x}px`, top: `${tooltipPosition.y}px` }}>
-                                            <p>{'Name: ' + country.nameCommon}</p>
-                                            <p>{'Official Name: ' + country.nameOfficial}</p>
-                                            <p>{'Country Code: ' + country.cca2}</p>
-                                            <p>{'Population: ' + (country.population ? country.population.toLocaleString() : 'Unavailable')}</p>
-                                            <p>{'Languages: ' + (country.languages ? country.languages.join(', ') : 'Unavailable')}</p>
-                                            <p>{'Flag: ' + country.flagUrl}</p>
-                                            <p>{country.flagAltText}</p>
-                                        </div>
-                                    )}
-                                </li>
-                            ))
-                        ) : (
-                            <p>No countries found for this region.</p>
-                        )}
+                        {countries.map((country, index) => (
+                            <li key={index}
+                                onMouseEnter={(e) => handleMouseEnter(country, e)}
+                                onMouseLeave={handleMouseLeave}>
+                                {country.nameCommon}
+                                {hoveredCountry === country && (
+                                    <div className="country-tooltip" style={{ left: `${tooltipPosition.x}px`, top: `${tooltipPosition.y}px` }}>
+                                        <p>{'Name: ' + country.nameCommon}</p>
+                                        <p>{'Official Name: ' + country.nameOfficial}</p>
+                                        <p>{'Country Code: ' + country.cca2}</p>
+                                    </div>
+                                )}
+                            </li>
+                        ))}
                     </ul>
-                </div>
-            )}
-
-            <footer className="footer-rp">
-                <p>World Explorer</p>
-                <div className="footer-links-rp2">
-                    <Link to="/countries" className="footer-link-rp">Countries</Link>
-                    <Link to="/regions" className="footer-link-rp">Regions</Link>
-                    <Link to="/demographics" className="footer-link-rp">Demographics</Link>
-                </div>
-            </footer>
+                ) : (
+                    <p>Select a region or subregion to view countries</p>
+                )}
+            </div>
+            <Footer />
         </div>
     );
 };

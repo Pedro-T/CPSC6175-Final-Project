@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import Navbar from "./common/navbar";
+import Footer from "./common/footer";
 import './CountriesPage.css';
 import useCountryStore from '../../store/useCountryStore';
-import { Link } from 'react-router-dom';
+
 
 const CountriesPage = () => {
     const { countryDetails, fetchCountryDetails, loading, error } = useCountryStore();
@@ -18,12 +20,7 @@ const CountriesPage = () => {
 
     return (
         <div className="countries-page">
-            <nav className="navigation-cp">
-                <Link to="/countries" className="nav-link">Countries</Link>
-                <Link to="/regions" className="nav-link">Regions</Link>
-                <Link to="/demographics" className="nav-link">Demographics</Link>
-                <Link to="/" className="nav-home">Home</Link>
-            </nav>
+            <Navbar />
             <div className="title-container">
                 <h1 className="title-cp">Countries</h1>
             </div>
@@ -45,10 +42,20 @@ const CountriesPage = () => {
                 {error && <p className="error">{error}</p>}
                 {countryDetails && (
                     <div className="search-result">
-                        <h3>{countryDetails.name}</h3>
+                        <h1>{countryDetails.nameCommon}</h1>
+                        <p><img src={countryDetails.flagUrl}/></p>
+                        <p><strong>Official Name:</strong> {countryDetails.nameOfficial}</p>
+                        <p><strong>CCA2:</strong> {countryDetails.cca2}</p>
+                        <p><strong>Capital:</strong> {countryDetails.capital}</p>
+                        <p><strong>Region:</strong> {countryDetails.region}</p>
+                        <p><strong>Languages:</strong> {countryDetails.languages}</p>
+                        <p><strong>Population Size:</strong> {countryDetails.population}</p>
+                        <p><strong>Currencies:</strong> {countryDetails.currencies}</p>
+                        <p><strong>Flag Description:</strong> {countryDetails.flagAltText}</p>
                     </div>
                 )}
             </div>
+            <Footer />
         </div>
     );
 };

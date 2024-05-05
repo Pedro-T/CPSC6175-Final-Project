@@ -1,4 +1,4 @@
-import create from 'zustand';
+import {create} from 'zustand';
 import axios from 'axios';
 
 const useDemographicsStore = create((set) => ({
@@ -7,11 +7,11 @@ const useDemographicsStore = create((set) => ({
     loading: false,
     error: '',
 
-    fetchCountriesByLanguage: async (languageName) => {
-        console.log("Fetching countries for language:", languageName);
+    fetchCountriesByLanguage: async (language) => {
+        console.log("Fetching countries for language:", language);
         set({ loading: true, error: '', countriesByCurrency: [] });
         try {
-            const response = await axios.get(`http://localhost:8080/countrylist/language/${languageName}`);
+            const response = await axios.get(`http://localhost:8080/countrylist/language/${language}`);
             set({ countriesByLanguage: response.data, loading: false });
         } catch (error) {
             set({ error: 'Error fetching countries by language', loading: false });

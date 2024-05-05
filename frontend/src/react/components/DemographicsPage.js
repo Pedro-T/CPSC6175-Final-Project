@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import Navbar from "./common/navbar";
+import Footer from "./common/footer";
 import useDemographicsStore from '../../store/useDemographicsStore';
 import './DemographicsPage.css';
-import {Link} from "react-router-dom";
+
 
 const DemographicsPage = () => {
     const languages = [
@@ -50,12 +52,7 @@ const DemographicsPage = () => {
 
     return (
         <div className="demographics-page">
-            <nav className="navigation-dp">
-                <Link to="/countries" className="nav-link">Countries</Link>
-                <Link to="/regions" className="nav-link">Regions</Link>
-                <Link to="/demographics" className="nav-link">Demographics</Link>
-                <Link to="/" className="nav-home-dp">Home</Link>
-            </nav>
+            <Navbar />
             <div className="dp-title">
                 <h1 className="title-dp">Demographics</h1>
             </div>
@@ -74,7 +71,6 @@ const DemographicsPage = () => {
                     </select>
                 </div>
 
-                {/* Search by currency */}
                 <div className="search-area">
                     <label htmlFor="currency-search">Search by currency:</label>
                     <select
@@ -88,10 +84,6 @@ const DemographicsPage = () => {
                     </select>
                 </div>
             </div>
-
-            {loading && <p>Loading...</p>}
-            {error && <p className="error">{error}</p>}
-
             <div className="results">
                 {countriesByLanguage.length > 0 && (
                     <div>
@@ -114,15 +106,7 @@ const DemographicsPage = () => {
                     </div>
                 )}
             </div>
-
-            <footer className="footer-dp">
-                <p>World Explorer</p>
-                <div className="footer-links-dp2">
-                    <Link to="/countries" className="footer-link-dp">Countries</Link>
-                    <Link to="/regions" className="footer-link-dp">Regions</Link>
-                    <Link to="/demographics" className="footer-link-dp">Demographics</Link>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 };

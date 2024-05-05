@@ -1,0 +1,30 @@
+.footer {
+    padding: 20px;
+    background: #FFF;
+}
+
+.footer p {
+    margin: 10px;
+    padding: 0;
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Inter, serif;
+    float:left;
+}
+
+.footer-links {
+    margin-top: 10px;
+    float: right;
+    font-family: Inter, serif;
+}
+
+.footer-link {
+    color: #000;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: gray;
+}
