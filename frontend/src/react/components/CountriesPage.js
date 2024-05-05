@@ -43,15 +43,14 @@ const CountriesPage = () => {
                 {countryDetails && (
                     <div className="search-result">
                         <h1>{countryDetails.nameCommon}</h1>
-                        <p><img src={countryDetails.flagUrl}/></p>
+                        <p><img className="flag" src={countryDetails.flagUrl} alt={countryDetails.flagAltText}/></p>
                         <p><strong>Official Name:</strong> {countryDetails.nameOfficial}</p>
                         <p><strong>CCA2:</strong> {countryDetails.cca2}</p>
-                        <p><strong>Capital:</strong> {countryDetails.capital}</p>
-                        <p><strong>Region:</strong> {countryDetails.region}</p>
-                        <p><strong>Languages:</strong> {countryDetails.languages}</p>
-                        <p><strong>Population Size:</strong> {countryDetails.population}</p>
-                        <p><strong>Currencies:</strong> {countryDetails.currencies}</p>
-                        <p><strong>Flag Description:</strong> {countryDetails.flagAltText}</p>
+                        <p><strong>Capital:</strong> {countryDetails.capital || "None"}</p>
+                        <p><strong>Region:</strong> {countryDetails.region || "None"}</p>
+                        <p><strong>Languages:</strong> {countryDetails.languages.length > 0 ? countryDetails.languages.join(", ") : "None"}</p>
+                        <p><strong>Population Size:</strong> {countryDetails.population.toLocaleString() || "None"}</p>
+                        <p><strong>Currencies:</strong> {countryDetails.currencies.length > 0 ? countryDetails.currencies.join(", ") : "None"}</p>
                     </div>
                 )}
             </div>
