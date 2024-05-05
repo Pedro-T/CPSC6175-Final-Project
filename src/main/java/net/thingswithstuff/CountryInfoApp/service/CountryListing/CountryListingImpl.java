@@ -36,11 +36,6 @@ public class CountryListingImpl implements CountryListingService {
     }
 
     @Override
-    public List<CountryNamesResponse> getAll() {
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "All Countries functionality not yet implemented");
-    }
-
-    @Override
     public List<CountryNamesResponse> getForRegion(String region) {
         return getResponse(region, REGION_QUERY_URL, storedRegionResponses);
     }

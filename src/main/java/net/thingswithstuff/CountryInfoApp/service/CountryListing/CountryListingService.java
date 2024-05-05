@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface CountryListingService {
 
-    List<CountryNamesResponse> getAll();
-
     List<CountryNamesResponse> getForRegion(String region);
 
     List<CountryNamesResponse> getForCurrency(String currency);
