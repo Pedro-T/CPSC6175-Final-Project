@@ -11,7 +11,7 @@ const useCountryStore = create((set) => ({
             const urlPath = identifier.length === 2
                 ? `cca2/${encodeURIComponent(identifier.toUpperCase())}`
                 : `name/${encodeURIComponent(identifier)}`;
-            const response = await fetch(`http://localhost:8080/country/${urlPath}`);
+            const response = await fetch(`/country/${urlPath}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch country details');
             }

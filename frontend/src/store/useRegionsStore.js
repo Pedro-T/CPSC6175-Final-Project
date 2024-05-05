@@ -11,7 +11,7 @@ const useRegionsStore = create((set) => ({
     selectAndFetchCountriesByRegion: async (regionName) => {
         set({ loading: true, error: '', selectedRegion: regionName, countries: [] });
         try {
-            const response = await axios.get(`http://localhost:8080/countrylist/region/${regionName}`);
+            const response = await axios.get(`/countrylist/region/${regionName}`);
             const updatedCountries = response.data.map(country => ({
                 ...country
             }));

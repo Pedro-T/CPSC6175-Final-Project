@@ -11,7 +11,7 @@ const useDemographicsStore = create((set) => ({
         console.log("Fetching countries for language:", language);
         set({ loading: true, error: '', countriesByCurrency: [] });
         try {
-            const response = await axios.get(`http://localhost:8080/countrylist/language/${language}`);
+            const response = await axios.get(`/countrylist/language/${language}`);
             set({ countriesByLanguage: response.data, loading: false });
         } catch (error) {
             set({ error: 'Error fetching countries by language', loading: false });
@@ -22,7 +22,7 @@ const useDemographicsStore = create((set) => ({
         console.log("Fetching countries for currency:", currencyName);
         set({ loading: true, error: '', countriesByLanguage: [] });
         try {
-            const response = await axios.get(`http://localhost:8080/countrylist/currency/${currencyName}`);
+            const response = await axios.get(`/countrylist/currency/${currencyName}`);
             set({ countriesByCurrency: response.data, loading: false });
         } catch (error) {
             set({ error: 'Error fetching countries by currency', loading: false });
