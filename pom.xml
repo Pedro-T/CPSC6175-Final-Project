@@ -87,6 +87,10 @@
 				<executions>
 					<execution>
 						<id>install npm dependencies</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>initialize</phase>
 						<configuration>
 							<workingDirectory>${project.basedir}/frontend</workingDirectory>
 							<executable>npm</executable>
