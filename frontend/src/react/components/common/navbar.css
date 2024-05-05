@@ -1,7 +1,7 @@
 .navigation-cp {
     display: inline-flex;
     height: 50px;
-    padding: 56px 100px;
+    padding: 5px 5px;
     justify-content: center;
     align-items: center ;
     gap: 0;
@@ -40,4 +40,12 @@
 .nav-link:hover {
     text-decoration: underline;
     color: gray;
+}
+
+@media (max-width: 600px) {
+    .navigation-cp {
+        flex-direction: column;
+        padding: 10px;
+        align-items: flex-start;
+    }
 }
