@@ -19,6 +19,7 @@ No API key is needed as the REST Countries API does not require one. Simply clon
 ```
 mvn clean spring-boot:run
 ```
+The Maven configuration will take care of triggering the install of packages from NPM, running webpack build, building the Spring app, and starting the application.
 
 ## Pages
 
@@ -30,7 +31,7 @@ Allows the user to explore a world map (leveraging amCharts) to find countries t
 ### Country Info Page
 Allows the user to enter a country name and retrieve information
 
-![image](https://github.com/CSU-WebEngineering-Spr24/Group-6/assets/15681739/127b8792-eff3-4f8b-8baf-627c62b69125)
+![image](https://github.com/CSU-WebEngineering-Spr24/Group-6/assets/15681739/f6b5f1ac-6f25-4b2a-890f-507dcddfcee0)
 
 
 ### Region Search
